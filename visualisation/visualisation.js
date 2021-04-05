@@ -4,7 +4,7 @@ var values = setup();
 var delay = 10;
 var comparisons = 0;
 var arrayAccesses = 0
-var i = 0;
+var i = 1;
 var j = 0;
 
 
@@ -21,9 +21,9 @@ function setup(){
 }
 
 function swap(values, j){
-        var temp = values[j];
-        values[j] = values[j+1]
-        values[j+1] = temp
+        temp = values[j];
+        values[j] = values[j-1]
+        values[j-1] = temp
         arrayAccesses+=4
 }
 
@@ -33,11 +33,11 @@ function draw(){
     ctx.strokeStyle = "white"
    
             if(i < values.length){
-               for (var j = 0; j<values.length-1-i; j++){ 
+               for (var j = i; j>0; j--){ 
                     var a = values[j]
-                    var b = values[j+1]
+                    var b = values[j-1]
                     arrayAccesses+=2;
-                        if(a > b){
+                        if(a < b){
                             swap(values, j)
                         }  
                     comparisons++;
