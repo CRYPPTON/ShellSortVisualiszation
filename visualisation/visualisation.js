@@ -4,9 +4,8 @@ var values = setup();
 var delay = 10;
 var comparisons = 0;
 var arrayAccesses = 0
-var i = 1;
-var j = 0;
-
+var i = 0;
+var j = i+1;
 
 function randNumb(height){
     return Math.floor(Math.random()*height)             
@@ -20,10 +19,10 @@ function setup(){
     return values
 }
 
-function swap(values, j){
-        temp = values[j];
-        values[j] = values[j-1]
-        values[j-1] = temp
+function swap(values, i, j){
+        temp = values[i];
+        values[i] = values[j];
+        values[j] = temp
         arrayAccesses+=4
 }
 
@@ -32,13 +31,13 @@ function draw(){
     ctx.beginPath();
     ctx.strokeStyle = "white"
    
-            if(i < values.length){
-               for (var j = i; j>0; j--){ 
-                    var a = values[j]
-                    var b = values[j-1]
+            if(i < values.length-1){
+               for (var j = i+1; j<values.length; j++){ 
+                    var a = values[i]
+                    var b = values[j]
                     arrayAccesses+=2;
-                        if(a < b){
-                            swap(values, j)
+                        if(a > b){
+                            swap(values, i, j)
                         }  
                     comparisons++;
                     }
